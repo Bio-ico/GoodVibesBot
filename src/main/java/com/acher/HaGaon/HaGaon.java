@@ -30,7 +30,7 @@ public class HaGaon {
 		EventWaiter waiter = new EventWaiter();
 		CommandClientBuilder builder = new CommandClientBuilder();
 		builder.setOwnerId("455504351872548885");
-		builder.addCommands(new Torah());
+		builder.addCommand(new Torah());
 		builder.addCommand(new Gemara());
 		builder.addCommand(new Mishnah());
 		builder.addCommand(new PikeriAvot());
