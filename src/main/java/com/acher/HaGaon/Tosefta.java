@@ -22,7 +22,7 @@ import java.io.IOException;
 import com.jagrosh.jdautilities.command.Command;
 import com.jagrosh.jdautilities.command.CommandEvent;
 
-public class Tosefta extends Command{
+public class Tosefta extends Command {
 	public Tosefta() {
 		this.name = "tosefta";
 		this.help = "Grabs a tosefta verse from Sefaria's API";
