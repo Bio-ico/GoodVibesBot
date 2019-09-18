@@ -38,25 +38,24 @@ public class Gemara extends Command {
 	@Override
 	protected void execute(CommandEvent event) {
 		String args = event.getArgs();
-		String tract = args.substring(0,args.lastIndexOf(" "));
-		String page = args.substring(args.lastIndexOf(" ")+1,args.indexOf(':'));
+		String tract = args.substring(0, args.lastIndexOf(" "));
+		String page = args.substring(args.lastIndexOf(" ") + 1, args.indexOf(':'));
 		String verseText = "";
-		if(args.indexOf("-") == -1) {
-			int verse = Integer.parseInt(args.substring(args.indexOf(':')+1));
-			try { verseText = getVerse(tract,page,verse); } 
-			catch (IOException e) {	e.printStackTrace(); }
-		}
-		else {
-			int verse = Integer.parseInt(args.substring(args.indexOf(':')+1, args.indexOf('-')));
-			int verseEnd = Integer.parseInt(args.substring(args.indexOf('-')+1));
-			try { verseText = getVerse(tract,page,verse,verseEnd); }
+		if (args.indexOf("-") == -1) {
+			int verse = Integer.parseInt(args.substring(args.indexOf(':') + 1));
+			try { verseText = getVerse(tract, page, verse); } 
+			catch (IOException e) { e.printStackTrace(); }
+		} else {
+			int verse = Integer.parseInt(args.substring(args.indexOf(':') + 1, args.indexOf('-')));
+			int verseEnd = Integer.parseInt(args.substring(args.indexOf('-') + 1));
+			try { verseText = getVerse(tract, page, verse, verseEnd); } 
 			catch (IOException e) { e.printStackTrace(); }
 		}
 		SendVerse.sendEmbed(args, verseText, event);
 	}
 
 	public String getVerse(String tract, String page, int verse, int verseEnd) throws IOException {
-		if(tract.indexOf(' ') != 0) {
+		if (tract.indexOf(' ') != 0) {
 			tract = tract.replaceAll(" ", "_");
 		}
 		String sURL = "https://www.sefaria.org/api/texts/";
@@ -66,10 +65,10 @@ public class Gemara extends Command {
 			URL url = new URL(sURL);
 			URLConnection request = url.openConnection();
 			request.connect();
-			JsonParser jp = new JsonParser(); 
-			JsonElement root = jp.parse(new InputStreamReader((InputStream) request.getContent())); 
-			JsonObject rootobj = root.getAsJsonObject(); 
-			if(text.length() + rootobj.get("text").getAsString().length() > 2048)
+			JsonParser jp = new JsonParser();
+			JsonElement root = jp.parse(new InputStreamReader((InputStream) request.getContent()));
+			JsonObject rootobj = root.getAsJsonObject();
+			if (text.length() + rootobj.get("text").getAsString().length() > 2048)
 				break;
 			text = text + rootobj.get("text").getAsString() + " ";
 		}
@@ -78,7 +77,7 @@ public class Gemara extends Command {
 	}
 
 	public String getVerse(String tract, String page, int verse) throws IOException {
-		if(tract.indexOf(' ') != 0) {
+		if (tract.indexOf(' ') != 0) {
 			tract = tract.replaceAll(" ", "_");
 		}
 		String sURL = "https://www.sefaria.org/api/texts/";
@@ -87,9 +86,9 @@ public class Gemara extends Command {
 		URL url = new URL(sURL);
 		URLConnection request = url.openConnection();
 		request.connect();
-		JsonParser jp = new JsonParser(); 
-		JsonElement root = jp.parse(new InputStreamReader((InputStream) request.getContent())); 
-		JsonObject rootobj = root.getAsJsonObject(); 
+		JsonParser jp = new JsonParser();
+		JsonElement root = jp.parse(new InputStreamReader((InputStream) request.getContent()));
+		JsonObject rootobj = root.getAsJsonObject();
 		text = text + rootobj.get("text").getAsString() + " ";
 		text = TextProcessing.fixText(text);
 		return text;

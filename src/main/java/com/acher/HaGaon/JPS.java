@@ -36,7 +36,7 @@ public class JPS extends Command {
 		int chapter = Integer.parseInt(args.substring(args.lastIndexOf(" ")+1,args.indexOf(':')));
 		if(args.indexOf("-") == -1) {
 			int line = Integer.parseInt(args.substring(args.indexOf(':')+1));
-			try {verseText = TextProcessing.getVerse(book,chapter,line,translation,sURL); } 
+			try { verseText = TextProcessing.getVerse(book,chapter,line,translation,sURL); } 
 			catch (IOException e) {	e.printStackTrace(); }
 		}
 		else {

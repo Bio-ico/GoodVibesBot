@@ -22,15 +22,16 @@ import com.jagrosh.jdautilities.command.Command;
 import com.jagrosh.jdautilities.command.CommandEvent;
 import net.dv8tion.jda.core.Permission;
 
-public class About extends Command{
+public class About extends Command {
 	public About() {
 		this.name = "about";
 	}
 
 	public void execute(CommandEvent event) {
-		Permission[] recommendedPerms = new Permission[] {Permission.MESSAGE_READ, Permission.MESSAGE_WRITE};
+		Permission[] recommendedPerms = new Permission[] { Permission.MESSAGE_READ, Permission.MESSAGE_WRITE };
 		String link = event.getJDA().asBot().getInviteUrl(recommendedPerms);
-		String message = "Hello! I am HaGaon HaMachane! I am a discord bot that can quote from an assortment of Jewish Holy Texts!\n [Invite](" + link + ") me to your server!\n[Find me on Github!](https://github.com/djkirsch/HaGaonHaMachane)";
+		String message = "Hello! I am HaGaon HaMachane! I am a discord bot that can quote from an assortment of Jewish Holy Texts!\n [Invite]("
+				+ link + ") me to your server!\n[Find me on Github!](https://github.com/djkirsch/HaGaonHaMachane)";
 		SendVerse.sendEmbed("About", message, event);
 	}
 

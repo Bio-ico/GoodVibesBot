@@ -35,7 +35,7 @@ public class Mishnah extends Command {
 		int page = Integer.parseInt(args.substring(args.lastIndexOf(" ")+1,args.indexOf(':')));
 		if(args.indexOf("-") == -1) {
 			int line = Integer.parseInt(args.substring(args.indexOf(':')+1));
-			try {verseText = TextProcessing.getVerse(tract,page,line,sURL); } 
+			try { verseText = TextProcessing.getVerse(tract,page,line,sURL); } 
 			catch (IOException e) {	e.printStackTrace(); }
 		}
 		else {
