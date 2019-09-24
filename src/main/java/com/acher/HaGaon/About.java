@@ -28,7 +28,7 @@ public class About extends Command {
 	}
 
 	public void execute(CommandEvent event) {
-		Permission[] recommendedPerms = new Permission[] { Permission.MESSAGE_READ, Permission.MESSAGE_WRITE };
+		Permission[] recommendedPerms = new Permission[] {Permission.MESSAGE_READ, Permission.MESSAGE_WRITE, Permission.MESSAGE_EMBED_LINKS};
 		String link = event.getJDA().asBot().getInviteUrl(recommendedPerms);
 		String message = "Hello! I am HaGaon HaMachane! I am a discord bot that can quote from an assortment of Jewish Holy Texts!\n [Invite]("
 				+ link + ") me to your server!\n[Find me on Github!](https://github.com/djkirsch/HaGaonHaMachane)";
