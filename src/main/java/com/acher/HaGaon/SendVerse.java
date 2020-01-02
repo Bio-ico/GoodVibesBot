@@ -18,9 +18,10 @@
 */
 package com.acher.HaGaon;
 
-import java.awt.Color;
 import com.jagrosh.jdautilities.command.CommandEvent;
 import net.dv8tion.jda.core.EmbedBuilder;
+
+import java.awt.*;
 
 public class SendVerse {
 	public static void sendEmbed(String name, String verseText, CommandEvent event) {

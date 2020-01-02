@@ -18,6 +18,7 @@
 */
 package com.acher.HaGaon;
 
+import com.jagrosh.jdautilities.command.Command;
 import com.jagrosh.jdautilities.command.CommandClient;
 import com.jagrosh.jdautilities.command.CommandClientBuilder;
 import com.jagrosh.jdautilities.commons.waiter.EventWaiter;
@@ -30,15 +31,28 @@ public class HaGaon {
 		EventWaiter waiter = new EventWaiter();
 		CommandClientBuilder builder = new CommandClientBuilder();
 		builder.setOwnerId("455504351872548885");
-		builder.addCommand(new Torah());
+		Command[] stuff = {
+				new Torah(),
+				new Gemara(),
+				new Mishnah(),
+				new PirkeiAvot(),
+				new Tosefta(),
+				new Rashi(),
+				new About(),
+				new JPS()};
+		for (Command i : stuff)
+			builder.addCommand(i);
+		/*
+		builder.addCommand(new Torah())
 		builder.addCommand(new Gemara());
 		builder.addCommand(new Mishnah());
-		builder.addCommand(new PikeriAvot());
+		builder.addCommand(new PirkeiAvot());
 		builder.addCommand(new Tosefta());
 		builder.addCommand(new Rashi());
 		builder.addCommand(new About());
 		builder.addCommand(new JPS());
-		builder.setPrefix("!!");
+		*/
+		builder.setPrefix("--");
 		CommandClient client = builder.build();
 		Object[] EventListers = { waiter, client };
 		new JDABuilder(AccountType.BOT)
