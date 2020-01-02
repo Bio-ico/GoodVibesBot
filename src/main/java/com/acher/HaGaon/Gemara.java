@@ -44,12 +44,18 @@ public class Gemara extends Command {
 		if (args.indexOf("-") == -1) {
 			int verse = Integer.parseInt(args.substring(args.indexOf(':') + 1));
 			try { verseText = getVerse(tract, page, verse); } 
-			catch (IOException e) { e.printStackTrace(); }
+			catch (IOException e) { 
+				e.printStackTrace(); 
+				SendVerse.sendEmbed("ERROR", "An Exception has occured! Try again in a minute!", event);
+			}
 		} else {
 			int verse = Integer.parseInt(args.substring(args.indexOf(':') + 1, args.indexOf('-')));
 			int verseEnd = Integer.parseInt(args.substring(args.indexOf('-') + 1));
 			try { verseText = getVerse(tract, page, verse, verseEnd); } 
-			catch (IOException e) { e.printStackTrace(); }
+			catch (IOException e) { 
+				e.printStackTrace(); 
+				SendVerse.sendEmbed("ERROR", "An Exception has occured! Try again in a minute!", event);
+			}
 		}
 		SendVerse.sendEmbed(args, verseText, event);
 	}

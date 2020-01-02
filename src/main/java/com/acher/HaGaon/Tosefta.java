@@ -36,13 +36,19 @@ public class Tosefta extends Command {
 		if(args.indexOf("-") == -1) {
 			int line = Integer.parseInt(args.substring(args.indexOf(':')+1));
 			try { verseText = TextProcessing.getVerse(tract,page,line,sURL); } 
-			catch (IOException e) {	e.printStackTrace(); }
+			catch (IOException e) { 
+				e.printStackTrace(); 
+				SendVerse.sendEmbed("ERROR", "An Exception has occured! Try again in a minute!", event);
+			}
 		}
 		else {
 			int line = Integer.parseInt(args.substring(args.indexOf(':')+1, args.indexOf('-')));
 			int lineEnd = Integer.parseInt(args.substring(args.indexOf('-')+1));
 			try { verseText = TextProcessing.getVerse(tract,page,line,lineEnd,sURL); }
-			catch (IOException e) { e.printStackTrace(); }
+			catch (IOException e) { 
+				e.printStackTrace(); 
+				SendVerse.sendEmbed("ERROR", "An Exception has occured! Try again in a minute!", event);
+			}
 		}
 		SendVerse.sendEmbed(args, verseText, event);
 	}

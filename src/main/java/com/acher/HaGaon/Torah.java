@@ -37,13 +37,19 @@ public class Torah extends Command {
 		if(args.indexOf("-") == -1) {
 			int line = Integer.parseInt(args.substring(args.indexOf(':')+1));
 			try { verseText = TextProcessing.getVerse(book,chapter,line,translation,sURL); } 
-			catch (IOException e) {	e.printStackTrace(); }
+			catch (IOException e) { 
+				e.printStackTrace(); 
+				SendVerse.sendEmbed("ERROR", "An Exception has occured! Try again in a minute!", event);
+			}
 		}
 		else {
 			int line = Integer.parseInt(args.substring(args.indexOf(':')+1, args.indexOf('-')));
 			int lineEnd = Integer.parseInt(args.substring(args.indexOf('-')+1));
 			try { verseText = TextProcessing.getVerse(book,chapter,line,lineEnd,translation,sURL); }
-			catch (IOException e) { e.printStackTrace(); }
+			catch (IOException e) { 
+				e.printStackTrace(); 
+				SendVerse.sendEmbed("ERROR", "An Exception has occured! Try again in a minute!", event);
+			}
 		}
 		SendVerse.sendEmbed(args, verseText, event);  
 }
