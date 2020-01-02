@@ -31,11 +31,17 @@ public class HaGaon {
 		EventWaiter waiter = new EventWaiter();
 		CommandClientBuilder builder = new CommandClientBuilder();
 		builder.setOwnerId("455504351872548885");
-		Command[] stuff = {new Torah(), new Gemara(), new Mishnah(), new PirkeiAvot(), new Tosefta(), new Rashi(),  new About(), new JPS()};
+		Command[] stuff = {
+				new Torah(),
+				new Gemara(),
+				new Mishnah(),
+				new PirkeiAvot(),
+				new Tosefta(),
+				new Rashi(),
+				new About(),
+				new JPS()};
 		for (Command i : stuff)
-		{
 			builder.addCommand(i);
-		}
 		/*
 		builder.addCommand(new Torah())
 		builder.addCommand(new Gemara());
@@ -50,7 +56,7 @@ public class HaGaon {
 		CommandClient client = builder.build();
 		Object[] EventListers = { waiter, client };
 		new JDABuilder(AccountType.BOT)
-				.setToken("NDc1MjI0MDYyOTk4NjA5OTIy.Xg5dPg.9ljDn71n7S4Vc9bz1unoIDeWlys")
+				.setToken("")
 				.setGame(Game.playing("loading..."))
 				.addEventListener(EventListers)
 				.buildAsync();
