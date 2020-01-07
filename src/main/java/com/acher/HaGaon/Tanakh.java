@@ -18,40 +18,37 @@
 */
 package com.acher.HaGaon;
 
-import com.jagrosh.jdautilities.command.CommandEvent;
-
-import java.io.IOException;
-
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 public class Tanakh extends bookImpl {
 	public Tanakh() {
 		this.name = "tanakh";
 		this.help = "Grabs a Tanakh verse from Sefaria's API";
 	}
 
-	public void run(CommandEvent event,  String args){
+	public String[] run(String args){
 		String sURL = "https://www.sefaria.org/api/texts/";
-		String book = args.substring(0,args.lastIndexOf(" "));
-		String translation = "The Koren Jerusalem Bible";
-		String verseText = "";
-		int chapter = Integer.parseInt(args.substring(args.lastIndexOf(" ")+1,args.indexOf(':')));
-		if(args.indexOf("-") == -1) {
-			int line = Integer.parseInt(args.substring(args.indexOf(':')+1));
-			try { verseText = TextProcessing.getVerse(book,chapter,line,translation,sURL); }
-			catch (IOException e) {
-				e.printStackTrace();
-				SendVerse.sendEmbed("ERROR", "An Exception has occured! Try again in a minute!", event);
-			}
-		}
-		else {
-			int line = Integer.parseInt(args.substring(args.indexOf(':')+1, args.indexOf('-')));
-			int lineEnd = Integer.parseInt(args.substring(args.indexOf('-')+1));
-			try { verseText = TextProcessing.getVerse(book,chapter,line,lineEnd,translation,sURL); }
-			catch (IOException e) {
-				e.printStackTrace();
-				SendVerse.sendEmbed("ERROR", "An Exception has occured! Try again in a minute!", event);
-			}
-		}
-		SendVerse.sendEmbed(args, verseText, event);
-	}
-
+		//                           (book)   (chap):(line)(-lineEnd)
+        Pattern r = Pattern.compile("(\\S+)\\s(\\d+):(\\d+)(-\\d+)*");
+        Matcher m = r.matcher(args);
+        if (!m.find()){return new String[]{"error.","if you're seeing this, something's wrong."};}
+        String book = m.group(1);
+        int chapter = Integer.parseInt(m.group(2));
+        int line    = Integer.parseInt(m.group(3));
+        String translation = "The Koren Jerusalem Bible";
+        String verseText;
+        try {
+            if (m.group(4) == null)
+                verseText = TextProcessing.getVerse(book, chapter, line, translation, sURL);
+            else {
+                int lineEnd = Integer.parseInt(m.group(4).substring(1));
+                verseText = TextProcessing.getVerse(book, chapter, line, lineEnd, translation, sURL);
+            }
+            return new String[]{args,verseText};
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+            return new String[]{"error.","if you're seeing this, something's wrong:\n"+e.toString()};
+        }
+    }
 }
