@@ -18,19 +18,20 @@
 */
 package com.acher.HaGaon;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.URL;
-import java.net.URLConnection;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.jagrosh.jdautilities.command.Command;
 import com.jagrosh.jdautilities.command.CommandEvent;
 
-public class Gemara extends Command {
-	public Gemara() {
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.URL;
+import java.net.URLConnection;
+
+public class Talmud extends Command {
+	public Talmud() {
 		this.name = "gemara";
 		this.help = "Uses Sefaria's API to post a Gemara quote";
 	}

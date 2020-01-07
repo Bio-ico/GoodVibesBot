@@ -18,15 +18,15 @@
 */
 package com.acher.HaGaon;
 
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
-
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
 
 public class TextProcessing {
 	public static String fixText(String text) {
@@ -40,15 +40,15 @@ public class TextProcessing {
 		return text;
 	}
 
+
+
 	public static String getVerse(String book, int chapter, int verse, int verseEnd, String sURL) throws IOException {
-		if (book.indexOf(' ') != 0) {
-			book = book.replaceAll(" ", "_");
-		}
+		book = book.replaceAll(" ", "_");
 		String text = "";
 		String sURLoriginal = sURL;
 		for (int i = verse; i <= verseEnd; i++) {
 			sURL = sURLoriginal;
-			sURL = sURL + book + "." + chapter + "." + i + "?context=0";
+			sURL += book + "." + chapter + "." + i + "?context=0";
 			URL url = new URL(sURL);
 			URLConnection request = url.openConnection();
 			request.connect();
@@ -81,12 +81,8 @@ public class TextProcessing {
 
 	public static String getVerse(String book, int chapter, int verse, int verseEnd, String translation, String sURL)
 			throws IOException {
-		if (book.indexOf(' ') != 0) {
-			book = book.replaceAll(" ", "_");
-		}
-		if (translation.indexOf(' ') != 0) {
-			translation = translation.replaceAll(" ", "_");
-		}
+		book = book.replaceAll(" ", "_");
+		translation = translation.replaceAll(" ", "_");
 		String text = "";
 		String sURLoriginal = sURL;
 		for (int i = verse; i <= verseEnd; i++) {

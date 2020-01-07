@@ -18,17 +18,17 @@
 */
 package com.acher.HaGaon;
 
-import java.io.IOException;
-import com.jagrosh.jdautilities.command.Command;
 import com.jagrosh.jdautilities.command.CommandEvent;
 
-public class Torah extends Command {
-	public Torah() {
+import java.io.IOException;
+
+public class Tanakh extends bookImpl {
+	public Tanakh() {
 		this.name = "tanakh";
 		this.help = "Grabs a Tanakh verse from Sefaria's API";
 	}
-	protected void execute(CommandEvent event) {
-		String args = event.getArgs();
+
+	public void run(CommandEvent event,  String args){
 		String sURL = "https://www.sefaria.org/api/texts/";
 		String book = args.substring(0,args.lastIndexOf(" "));
 		String translation = "The Koren Jerusalem Bible";
@@ -36,9 +36,9 @@ public class Torah extends Command {
 		int chapter = Integer.parseInt(args.substring(args.lastIndexOf(" ")+1,args.indexOf(':')));
 		if(args.indexOf("-") == -1) {
 			int line = Integer.parseInt(args.substring(args.indexOf(':')+1));
-			try { verseText = TextProcessing.getVerse(book,chapter,line,translation,sURL); } 
-			catch (IOException e) { 
-				e.printStackTrace(); 
+			try { verseText = TextProcessing.getVerse(book,chapter,line,translation,sURL); }
+			catch (IOException e) {
+				e.printStackTrace();
 				SendVerse.sendEmbed("ERROR", "An Exception has occured! Try again in a minute!", event);
 			}
 		}
@@ -46,11 +46,12 @@ public class Torah extends Command {
 			int line = Integer.parseInt(args.substring(args.indexOf(':')+1, args.indexOf('-')));
 			int lineEnd = Integer.parseInt(args.substring(args.indexOf('-')+1));
 			try { verseText = TextProcessing.getVerse(book,chapter,line,lineEnd,translation,sURL); }
-			catch (IOException e) { 
-				e.printStackTrace(); 
+			catch (IOException e) {
+				e.printStackTrace();
 				SendVerse.sendEmbed("ERROR", "An Exception has occured! Try again in a minute!", event);
 			}
 		}
-		SendVerse.sendEmbed(args, verseText, event);  
-}
+		SendVerse.sendEmbed(args, verseText, event);
+	}
+
 }

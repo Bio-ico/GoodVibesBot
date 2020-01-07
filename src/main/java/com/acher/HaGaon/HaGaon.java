@@ -31,27 +31,21 @@ public class HaGaon {
 		EventWaiter waiter = new EventWaiter();
 		CommandClientBuilder builder = new CommandClientBuilder();
 		builder.setOwnerId("455504351872548885");
-		Command[] stuff = {
-				new Torah(),
-				new Gemara(),
+
+		Command[] book = {
+				new Text(),
+				new Tanakh(),
+				new Talmud(),
 				new Mishnah(),
 				new PirkeiAvot(),
 				new Tosefta(),
 				new Rashi(),
 				new About(),
-				new JPS()};
-		for (Command i : stuff)
+				new JPS()
+		};
+		for (Command i : book)
 			builder.addCommand(i);
-		/*
-		builder.addCommand(new Torah())
-		builder.addCommand(new Gemara());
-		builder.addCommand(new Mishnah());
-		builder.addCommand(new PirkeiAvot());
-		builder.addCommand(new Tosefta());
-		builder.addCommand(new Rashi());
-		builder.addCommand(new About());
-		builder.addCommand(new JPS());
-		*/
+
 		builder.setPrefix("--");
 		CommandClient client = builder.build();
 		Object[] EventListers = { waiter, client };
