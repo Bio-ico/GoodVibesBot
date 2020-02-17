@@ -33,7 +33,10 @@ public class GoodVibes {
         builder.setOwnerId("464181282583085056");
 
         Command[] cmd = {
-              new Quote()
+                new Quote(),
+                new InspirationalQuote(),
+                new RandWiki(),
+                new EOTF()
         };
         for (Command i : cmd)
             builder.addCommand(i);

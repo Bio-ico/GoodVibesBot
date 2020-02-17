@@ -30,7 +30,7 @@ public class HaGaon {
 	public static void main(String[] arguments) throws Exception {
 		EventWaiter waiter = new EventWaiter();
 		CommandClientBuilder builder = new CommandClientBuilder();
-		builder.setOwnerId("455504351872548885");
+		builder.setOwnerId("464181282583085056");
 
 		Command[] book = {
 				new Text(),

@@ -10,7 +10,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="HaGaonHaMachane" target="1.8" />
+      <module name="HaGaonHaMachane" target="13" />
     </bytecodeTargetLevel>
   </component>
 </project>
