@@ -34,7 +34,7 @@ public class Rashi extends Command {
 		String translation = "The Rashi chumash by Rabbi Shraga Silverstein";
 		String verseText = "";
 		int chapter = Integer.parseInt(args.substring(args.lastIndexOf(" ")+1,args.indexOf(':')));
-		if(args.indexOf("-") == -1) {
+		if(!args.contains("-")) {
 			int line = Integer.parseInt(args.substring(args.indexOf(':')+1));
 			try { verseText = TextProcessing.getVerse(book,chapter,line,translation,sURL); } 
 			catch (IOException e) {	

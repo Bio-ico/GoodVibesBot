@@ -23,18 +23,18 @@ public class EOTF extends Command {
         String sURL = "https://www.sefaria.org/api/texts/";
         String book = "Pirkei_Avot";
         String verseText = "";
-        HighQualityRandom r = new HighQualityRandom();
-        int chapter = 1 + r.nextInt(6);
-        int line = 1 + r.nextInt(
+        long n = System.currentTimeMillis();
+        int chapter = 1 + (int)(((n &0xFF00)>> 8) % 6);
+        int line = 1 + (int)((n &0x00FF) %
             switch(chapter){
                 case 1 -> 18;
                 case 2 -> 16;
                 case 3 -> 18;
                 case 4 -> 22;
                 case 5 -> 23;
-                default -> 11;
+                default-> 11;
             });
-        System.out.println("chapter = "+chapter+" line = "+line);
+        System.out.println(chapter+": "+line);
         try { verseText = TextProcessing.getVerse(book,chapter,line,sURL); }
         catch (IOException e) {
             e.printStackTrace();

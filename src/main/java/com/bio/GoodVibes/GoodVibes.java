@@ -18,6 +18,7 @@
  */
 package com.bio.GoodVibes;
 
+import com.acher.HaGaon.*;
 import com.jagrosh.jdautilities.command.Command;
 import com.jagrosh.jdautilities.command.CommandClient;
 import com.jagrosh.jdautilities.command.CommandClientBuilder;
@@ -36,12 +37,23 @@ public class GoodVibes {
                 new Quote(),
                 new InspirationalQuote(),
                 new RandWiki(),
-                new EOTF()
+                new EOTF(),
+                new Kongzi(),
+                new PKMN(),
+                new Text(),
+                new Tanakh(),
+                new Talmud(),
+                new Mishnah(),
+                new PirkeiAvot(),
+                new Tosefta(),
+                new Rashi(),
+                new About(),
+                new JPS()
         };
         for (Command i : cmd)
             builder.addCommand(i);
 
-        builder.setPrefix("--");
+        builder.setPrefix("-");
         CommandClient client = builder.build();
         Object[] EventListers = { waiter, client };
         new JDABuilder(AccountType.BOT)

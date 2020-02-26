@@ -25,6 +25,7 @@ import com.google.gson.JsonParser;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 
@@ -40,7 +41,14 @@ public class TextProcessing {
 		return text;
 	}
 
-
+	public static String retrieveText(String sURL) throws IOException {
+		URL url = new URL(sURL);
+		URLConnection request = url.openConnection();
+		request.connect();
+		JsonElement root = new JsonParser().parse(new InputStreamReader((InputStream) request.getContent()));
+		JsonObject rootobj = root.getAsJsonObject();
+		return rootobj.get("text").getAsString();
+	}
 
 	public static String getVerse(String book, int chapter, int verse, int verseEnd, String sURL) throws IOException {
 		book = book.replaceAll(" ", "_");
@@ -49,34 +57,18 @@ public class TextProcessing {
 		for (int i = verse; i <= verseEnd; i++) {
 			sURL = sURLoriginal;
 			sURL += book + "." + chapter + "." + i + "?context=0";
-			URL url = new URL(sURL);
-			URLConnection request = url.openConnection();
-			request.connect();
-			JsonParser jp = new JsonParser();
-			JsonElement root = jp.parse(new InputStreamReader((InputStream) request.getContent()));
-			JsonObject rootobj = root.getAsJsonObject();
-			if (text.length() + rootobj.get("text").getAsString().length() > 2048)
+			String s = retrieveText(sURL);
+			if (text.length() + s.length() > 2048)
 				break;
-			text = text + rootobj.get("text").getAsString() + " ";
+			text = text + s + " ";
 		}
-		text = TextProcessing.fixText(text);
-		return text;
+		return TextProcessing.fixText(text);
 	}
 
 	public static String getVerse(String book, int chapter, int verse, String sURL) throws IOException {
-		if (book.indexOf(' ') != 0) {
-			book = book.replaceAll(" ", "_");
-		}
+		book = book.replaceAll(" ", "_");
 		sURL = sURL + book + "." + chapter + "." + verse + "?context=0";
-		URL url = new URL(sURL);
-		URLConnection request = url.openConnection();
-		request.connect();
-		JsonParser jp = new JsonParser();
-		JsonElement root = jp.parse(new InputStreamReader((InputStream) request.getContent()));
-		JsonObject rootobj = root.getAsJsonObject();
-		String text = rootobj.get("text").getAsString();
-		text = TextProcessing.fixText(text);
-		return text;
+		return TextProcessing.fixText(retrieveText(sURL));
 	}
 
 	public static String getVerse(String book, int chapter, int verse, int verseEnd, String translation, String sURL)
@@ -87,18 +79,12 @@ public class TextProcessing {
 		String sURLoriginal = sURL;
 		for (int i = verse; i <= verseEnd; i++) {
 			sURL = sURLoriginal + book + "." + chapter + "." + i + "?context=0" + "&ven=" + translation;
-			URL url = new URL(sURL);
-			URLConnection request = url.openConnection();
-			request.connect();
-			JsonParser jp = new JsonParser();
-			JsonElement root = jp.parse(new InputStreamReader((InputStream) request.getContent()));
-			JsonObject rootobj = root.getAsJsonObject();
-			if (text.length() + rootobj.get("text").getAsString().length() > 2048)
+			String s = retrieveText(sURL);
+			if (text.length() + s.length() > 2048)
 				break;
-			text = text + rootobj.get("text").getAsString() + " ";
+			text = text + s + " ";
 		}
-		text = TextProcessing.fixText(text);
-		return text;
+		return TextProcessing.fixText(text);
 	}
 
 	public static String getVerse(String book, int chapter, int verse, String translation, String sURL)
@@ -110,14 +96,6 @@ public class TextProcessing {
 			translation = translation.replaceAll(" ", "_");
 		}
 		sURL = sURL + book + "." + chapter + "." + verse + "?context=0" + "&ven=" + translation;
-		URL url = new URL(sURL);
-		URLConnection request = url.openConnection();
-		request.connect();
-		JsonParser jp = new JsonParser();
-		JsonElement root = jp.parse(new InputStreamReader((InputStream) request.getContent()));
-		JsonObject rootobj = root.getAsJsonObject();
-		String text = rootobj.get("text").getAsString();
-		text = TextProcessing.fixText(text);
-		return text;
+		return TextProcessing.fixText(retrieveText(sURL));
 	}
 }

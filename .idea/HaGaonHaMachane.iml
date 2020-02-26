@@ -25,5 +25,14 @@
     <orderEntry type="library" name="Maven: com.jagrosh:jda-utilities-examples:2.1" level="project" />
     <orderEntry type="library" name="Maven: com.jagrosh:jda-utilities-menu:2.1" level="project" />
     <orderEntry type="library" name="Maven: com.google.code.gson:gson:2.8.5" level="project" />
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://$USER_HOME$/Downloads/jsoup-1.12.2.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
   </component>
 </module>

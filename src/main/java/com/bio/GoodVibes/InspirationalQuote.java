@@ -4,13 +4,6 @@ import com.acher.HaGaon.SendVerse;
 import com.jagrosh.jdautilities.command.Command;
 import com.jagrosh.jdautilities.command.CommandEvent;
 
-import javax.script.Invocable;
-import javax.script.ScriptEngine;
-import javax.script.ScriptEngineManager;
-import javax.script.ScriptException;
-import java.io.*;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -22,40 +15,9 @@ public class InspirationalQuote extends Command {
 
     @Override
     protected void execute(CommandEvent event) {
-        /*
-        try {
-            // Create URL object
-            URL url = new URL("https://randomwordgenerator.com/inspirational-quote.php");
-            BufferedReader readr =
-                    new BufferedReader(new InputStreamReader(url.openStream()));
-
-            // Enter filename in which you want to download
-            // read each line from stream till end
-            String line;
-            while ((line = readr.readLine()) != null) {
-                    //SendVerse.sendEmbed("test", line, commandEvent);
-                    System.out.println(line);
-            }
-
-            readr.close();
-        }
-
-        // Exceptions
-        catch (MalformedURLException mue) {
-            System.out.println("Malformed URL Exception raised");
-        }
-        catch (IOException ie) {
-            System.out.println("IOException raised");
-        }
-        */
         String args = event.getArgs();
-        if (args.contains("add")){
-            quotes.add(args.substring(args.indexOf("add")+3));
-        }
-        else {
-            HighQualityRandom hqr = new HighQualityRandom();
-            SendVerse.sendEmbed("here's a random quote from a list we have", quotes.get(hqr.nextInt(quotes.size())), event);
-        }
+        int v = (int) System.currentTimeMillis() % quotes.size();
+        SendVerse.sendEmbed("here's a random quote from a list we have", quotes.get(v), event);
     }
 
     private static ArrayList<String> quotes = new ArrayList<>(Arrays.asList(

@@ -1,9 +1,11 @@
 package com.acher.HaGaon;
 
 
+import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import org.json.JSONArray;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -13,6 +15,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.net.URL;
 import java.net.URLConnection;
+import java.util.Arrays;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -62,7 +65,8 @@ public class Text extends bookImpl{
             JsonParser jp = new JsonParser();
             JsonElement root = jp.parse(new InputStreamReader((InputStream) request.getContent()));
             JsonObject rootobj = root.getAsJsonObject();
-            //JsonArray text = rootobj.get("titleVariants").getAsJsonArray();s
+            JsonArray text = rootobj.get("titleVariants").getAsJsonArray();
+            System.out.println(text);
             type = rootobj.get("type").getAsString();
         } catch (IOException e) {
             e.printStackTrace();
