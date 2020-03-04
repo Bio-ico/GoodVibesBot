@@ -44,7 +44,10 @@ public class RandWiki extends Command {
                 des = des.split("\\.(?=[^A-z0-9\\s.]*[^.]*$)")[0]+".";
                 System.out.println(body.text());
             }
-            SendEmbed.send_message_with_hyperLink(name.text(), line, des, commandEvent);
+            if (des.length() < 1)
+                execute(commandEvent);
+            else
+                SendEmbed.send_message_with_hyperLink(name.text(), line, des, commandEvent);
         } catch (IOException e) {
             e.printStackTrace();
         }

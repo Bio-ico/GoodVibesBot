@@ -35,6 +35,7 @@ public class GoodVibes {
 
         Command[] cmd = {
                 new Quote(),
+                new randime(),
                 new InspirationalQuote(),
                 new RandWiki(),
                 new EOTF(),
@@ -58,7 +59,7 @@ public class GoodVibes {
         Object[] EventListers = { waiter, client };
         new JDABuilder(AccountType.BOT)
                 .setToken("")
-                .setGame(Game.playing("loading..."))
+                .setGame(Game.playing("believing in you "))
                 .addEventListener(EventListers)
                 .buildAsync();
 

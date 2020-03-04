@@ -16,7 +16,8 @@ public class InspirationalQuote extends Command {
     @Override
     protected void execute(CommandEvent event) {
         String args = event.getArgs();
-        int v = (int) System.currentTimeMillis() % quotes.size();
+        int v = ((v = (int) System.currentTimeMillis()% quotes.size()) < 0) ? -v:v;
+        System.out.println(v);
         SendVerse.sendEmbed("here's a random quote from a list we have", quotes.get(v), event);
     }
 
