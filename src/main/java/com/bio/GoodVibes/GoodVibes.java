@@ -59,7 +59,7 @@ public class GoodVibes {
         Object[] EventListers = { waiter, client };
         new JDABuilder(AccountType.BOT)
                 .setToken("")
-                .setGame(Game.playing("believing in you "))
+                .setGame(Game.playing("believing in you"))
                 .addEventListener(EventListers)
                 .buildAsync();
 
