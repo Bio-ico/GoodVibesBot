@@ -57,7 +57,7 @@ public class GoodVibes {
         CommandClient client = builder.build();
         Object[] EventListers = { waiter, client };
         new JDABuilder(AccountType.BOT)
-                .setToken("NDY0MTgxMjgyNTgzMDg1MDU2.Xu-xmQ.OenNKhiqw_jlJHDkwRLx8j3JjqU")
+                .setToken("")
                 .setGame(Game.playing("believing in you"))
                 .addEventListener(EventListers)
                 .buildAsync();

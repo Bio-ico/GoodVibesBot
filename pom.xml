@@ -114,7 +114,7 @@
           <configuration>
             <archive>
               <manifest>
-                <mainClass>com.acher.HaGaon.HaGaon</mainClass>
+                <mainClass>com.bio.GoodVibes</mainClass>
               </manifest>
             </archive>
             <descriptorRefs>
