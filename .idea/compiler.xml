@@ -9,8 +9,8 @@
         <module name="HaGaonHaMachane" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="HaGaonHaMachane" target="13" />
+    <bytecodeTargetLevel target="11">
+      <module name="HaGaonHaMachane" target="11" />
     </bytecodeTargetLevel>
   </component>
 </project>

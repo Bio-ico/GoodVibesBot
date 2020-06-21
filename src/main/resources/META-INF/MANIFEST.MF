@@ -1,9 +1,0 @@
-Manifest-Version: 1.0
-Main-Class: com.bio.GoodVibes.GoodVibes
-Class-Path: trove4j-3.0.3.jar jda-utilities-command-2.1.jar jsoup-1.12.2
- .jar json-20160810.jar jda-utilities-examples-2.1.jar jda-utilities-doc
- -2.1.jar jda-utilities-commons-2.1.jar JDA-3.6.0_362.jar jsr305-3.0.2.j
- ar jda-utilities-menu-2.1.jar slf4j-api-1.7.25.jar okhttp-3.8.1.jar oki
- o-1.13.0.jar nv-websocket-client-2.2.jar commons-collections4-4.1.jar g
- son-2.8.5.jar jna-4.4.0.jar
-
