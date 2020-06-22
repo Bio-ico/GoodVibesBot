@@ -21,6 +21,7 @@ public class anime extends Command {
         boolean mal;
         Document doc;
         URL url;
+        String nam;
         if(mal = args.startsWith("MAL"))
             args = args.substring(3).trim();
         try {
@@ -35,7 +36,7 @@ public class anime extends Command {
                 }
             }
             Elements get_name = doc.getElementsByClass("value");
-            name = get_name.first().text().split("\\(.+\\)")[0];
+            nam = get_name.first().text().split("\\(.+\\)")[0];
 
             String line = doc.getElementsByClass(
                     mal ?
@@ -48,7 +49,8 @@ public class anime extends Command {
               body = ne.text().replaceAll("(^\")|Source:\\s.+", "");
             }
             Elements img = doc.select("img[itemprop = image]");
-            SendEmbed.send_image_with_hyperlink(name, line, body, img.attr("src"), commandEvent);
+            System.out.println(this.name);
+            SendEmbed.send_image_with_hyperlink(nam, line, body, img.attr("src"), commandEvent);
         }catch (NullPointerException e){
             SendEmbed.send_error_message("anime", "couldn't find anime \""+args+"\"!", commandEvent);
         }
