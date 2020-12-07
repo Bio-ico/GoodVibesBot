@@ -1,8 +1,8 @@
 # Good Vibes Bot
 This is a Java based Discord bot.
 # Dependencies
-https://github.com/Discord4J 
-https://github.com/google/gson  
+https://github.com/Discord4J</n>
+https://github.com/google/gson</n>
 https://jsoup.org/
 # What it does:
 **Generates requested/random (where available) things of the following sorts:**
