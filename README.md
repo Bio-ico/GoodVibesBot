@@ -1,5 +1,5 @@
 # Good Vibes Bot
-This is a discord bot.
+This is a Java based Discord bot.
 # Dependencies
 https://github.com/Discord4J
 https://github.com/google/gson  
